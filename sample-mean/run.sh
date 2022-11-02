@@ -2,7 +2,7 @@
 
 # Make sure only root can run our script
 if [[ $EUID -ne 0 ]]; then
-   echo "This script must be run as root" 1>&2
+   echo "This script must be run as root user" 1>&2
    exit 1
 fi
 
@@ -17,11 +17,11 @@ case "$1" in
     exit $?
     ;;
   stop)
-    pm2 stop node-todo --uid usuario --gid usuario
+    pm2 stop node-todo --uid usuario --gid bitnami
     exit $?
     ;;
   restart|force-reload|reload)
-    pm2 restart node-todo --uid usuario --gid usuario
+    pm2 restart node-todo --uid usuario --gid bitnami
     exit $?
     ;;
   init)

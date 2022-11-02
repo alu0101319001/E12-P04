@@ -2,7 +2,7 @@
 var express = require('express');
 var app = express();                                              // create our app w/ express
 var mongoose = require('mongoose');                               // mongoose for mongodb
-var port = process.env.BACKEND_PORT || process.env.PORT || 3000;  // set the port from envs, fallback to 3000
+var port = process.env.BACKEND_PORT || process.env.PORT || 3500;  // set the port from envs, fallback to 3000
 var database = require('./config/database');                      // load the database config
 var paths = require('./config/paths');                            // load the path config
 var morgan = require('morgan');

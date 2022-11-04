@@ -3,6 +3,7 @@
 # Make sure only root can run our script
 if [[ $EUID -ne 0 ]]; then
    echo "This script must be run as root user" 1>&2
+   echo "I want conflict"
    exit 1
 fi
 
@@ -12,7 +13,7 @@ fi
 case "$1" in
   start)
     # --uid and --gid are the unpriviledge user and group that will run the service
-    # You can use a different one as long as it exists in the machine or you have created it before.
+    #rent one as long as it exists in the machine or you have created it before.
     pm2 start ${APP_FOLDER}/server.js --name node-todo --uid usuario --gid usuario
     exit $?
     ;;

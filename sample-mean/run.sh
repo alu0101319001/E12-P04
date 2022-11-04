@@ -14,15 +14,15 @@ case "$1" in
   start)
     # --uid and --gid are the unpriviledge user and group that will run the service
     #rent one as long as it exists in the machine or you have created it before.
-    pm2 start ${APP_FOLDER}/server.js --name node-todo --uid usuario --gid usuario
+    pm2 start ${APP_FOLDER}/server.js --name node-todo --uid root --gid root
     exit $?
     ;;
   stop)
-    pm2 stop node-todo --uid usuario --gid bitnami
+    pm2 stop node-todo --uid root --gid bitnami
     exit $?
     ;;
   restart|force-reload|reload)
-    pm2 restart node-todo --uid usuario --gid bitnami
+    pm2 restart node-todo --uid root --gid bitnami
     exit $?
     ;;
   init)
@@ -46,7 +46,7 @@ case "$1" in
 
       # Fix permissions
       # We set bitnami as user and group as is the user that will run the service.
-      chown -R usuario:usuario ${DATA_FOLDER}
+      chown -R root:root ${DATA_FOLDER}
       chmod 600 ${DATA_FOLDER}/.initialized
     else
       echo "==> Data already initialized. Skipping..."
@@ -60,11 +60,11 @@ case "$1" in
 
     # Fix permissions
     # We set bitnami as user and group as is the user that will run the service.
-    chown -R usuario:usuario ${APP_FOLDER}
+    chown -R root:root ${APP_FOLDER}
     chown root:root ${APP_FOLDER}/run.sh
 
     # Install dependencies
-    su - usuario -c "cd ${APP_FOLDER}; npm install"
+    su - root -c "cd ${APP_FOLDER}; npm install"
     exit 0
     ;;
   *)
